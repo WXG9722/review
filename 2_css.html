@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    1.css选择器
+        id选择器
+        class选择器
+        标签选择器
+        后代选择器 div p
+        子代选择器 div>p
+        分组选择器 div,p
+        伪类选择器 a:hover
+        伪元素选择器 div::after
+        属性选择器 div[id="val"]
+        关系选择器 E+F表示E后面第一个F EF同属一个父级元素；E~F表示E后面所有F EF同属一个父级元素
+
+        优先级(由大到小)
+            !important
+            内联样式 1000
+            id 100
+            class :hover 属性选择器 10
+            标签 伪元素选择器 1
+    2.position
+        默认是static
+        absolute 绝对定位 定位给后空间释放 相对于最近已定位的祖先元素
+        relative 相对定位 定位后空间不释放 相对于自己初始位置
+        fixed 固定定位 定位后空间释放 相对于浏览器
+        sticky 吸附 定位给后空间释放
+    3.display
+        inline
+        block
+        inline-block
+        table
+        table-cell
+        flex
+    4.float
+        清除浮动
+        父元素overflow: hidden;
+        父元素加一个高度
+        浮动元素后面加一个元素并设置clear: both 或 浮动元素加一个伪类.clearfix::after{content: ''; display: block; clear: both;}
+    5.盒模型
+        标准盒模型：
+            box-sizing: content-box;
+            width是element的width
+        怪异盒模型：
+            box-sizing: border-box;
+            width是element + padding + border的width IE6以下不加doctype
+        弹性盒模型
+    6.外边距合并
+        父子之间外边距合并：
+            父元素加border 父元素overflow: hidden;
+            父元素或子元素 浮动 定位
+        兄弟之间外边距合并：
+            外边距设置在一个元素上
+            其中一个元素外边套一个元素冰overflow: hidden;
+    7.BFC 块级格式化上下文
+        是一个独立的渲染区域 其中有自己的规则 与这个区域外部不相关
+        规则：
+            内部box垂直排布
+            box垂直方向的距离由margin决定 并且同一个BFC相邻的两个box会发生外边距合并
+            每个元素margin box的左面与包含块border box的左面接触
+            BFC区域不会与float box重叠
+            BFC是一个独立容器 不会影响到外面的元素
+            计算BFC高度时 浮动元素也参与计算
+            （最后一条解释了为什么overflow: hidden;可以清除浮动）
+            （浮动之后 父元素高变为0 此时父元素设置为overflow: hidden; 生成BFC）
+            （由于最后一条 父元素的高就被浮动的元素撑起来了）
+        哪些元素触发生成BFC：
+            根元素
+            float不为none
+            position为absolute或fixed
+            display为inline-block table-cell table-caption flex inline-flex
+            overflow不为visible
+    8.重排 重绘 回流
+        重排： DOM变化影响到了元素几何属性 浏览器需要会重新计算几何属性 例如宽高
+        重绘：一个元素外观改变但没有改变布局 例如背景色
+        回流：浏览器发现某个部分发生变化影响了布局需要回去重新渲染 这个过程被称为回流
+
+</body>
+</html>

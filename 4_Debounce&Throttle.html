@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 函数去抖：一个频繁触发的函数 只执行最后一次 函数调用n秒后执行 如果函数在n秒内再次被调用的话则函数不执行 重新计算执行时间
+        // 比如疯狂点击登录 如果没有函数去抖 那么每一次点击都要发送ajax请求 这显然不好
+        // 利用函数去抖 设置一个定时器 让ajax请求在点击后500ms后触发 并且若在500ms内再点击登录 则清除定时器 函数ajax请求不会执行
+        // 使用闭包是为了存上次的定时器 因为这个上次的定时器要在这次的函数中清除
+        // 给method重新绑定this到document 是为了避免内存泄漏
+        function debounce(method, delay){
+            let timer = null
+            return function(){
+                let context = this;
+                let args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    method.apply(context, args);
+                }, delay)
+            }
+        }
+        // 函数节流(throttle)：一个频繁触发的函数 在规定周期内只执行一次
+        // 比如 还是疯狂点击登录
+        // 利用函数节流 设置一个周期1000ms 让ajax请求在这个周期内只能执行一次
+        function throttle(method, cycle){
+            let begin = new Date()
+            return function(){
+                let current = new Date()
+                let context = this;
+                let args = arguments;
+                if(current-begin >= cycle){
+                    method.apply(context, args)
+                    begin = current
+                }
+            }
+        }
+
+        let num = 0
+        function say(){
+            num++;
+            console.log(num)
+        }
+        function a(){
+            let a = setTimeout(function(){
+                console.log('ajja')
+            },500)
+        }
+        document.addEventListener('scroll', debounce(say, 500))
+
+        // 函数的节流和函数的去抖都是通过减少实际逻辑处理过程的执行次数 来提高事件处理函数运行性能的手段 
+        // 并没有实质上减少事件的触发次数。
+    </script>
+</body>
+</html>

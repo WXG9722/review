@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <script>
+        
+        var obj = {
+            f:1,
+            g:true,
+            // h:undefined,
+            // i:null,
+            j:'string',
+
+            a: {
+                aa:1
+            },
+            b: {
+                bb:1
+            },
+            c: [
+                1
+            ],
+            d: function(){
+                console.log(1)
+            },
+            key:5
+        }
+        
+        for(key in obj){
+            // console.log(key)
+            // console.log(obj[key])
+            // console.log(obj.key)
+            // console.log(typeof(obj[key]))
+            console.log(obj[key].constructor)
+        }
+        var arr = [1];
+        var k = function(){
+
+        }
+        console.log(arr instanceof(Array))
+        console.log(arr instanceof(Object))
+        console.log(k instanceof(Function))
+        console.log(k instanceof(Object))
+        console.log(obj instanceof(Function))
+        console.log(typeof(obj))
+    </script>
+</body>
+</html>
