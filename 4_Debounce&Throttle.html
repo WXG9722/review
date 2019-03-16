@@ -18,6 +18,8 @@
         // 利用函数去抖 设置一个定时器 让ajax请求在点击后500ms后触发 并且若在500ms内再点击登录 则清除定时器 函数ajax请求不会执行
         // 使用闭包是为了存上次的定时器 因为这个上次的定时器要在这次的函数中清除
         // 给method重新绑定this到document 是为了避免内存泄漏
+        // 这里 绑定this是在闭包中提前存this 然后绑上
+        // 但其实还有另一种方法 只要把setTimeout里面的function改成箭头函数就可以了
         function debounce(method, delay){
             let timer = null
             return function(){
@@ -50,14 +52,9 @@
             num++;
             console.log(num)
         }
-        function a(){
-            let a = setTimeout(function(){
-                console.log('ajja')
-            },500)
-        }
         document.addEventListener('scroll', debounce(say, 500))
 
-        // 函数的节流和函数的去抖都是通过减少实际逻辑处理过程的执行次数 来提高事件处理函数运行性能的手段 
+        // 函数的节流和函数的去抖都是通过减少实际逻辑处理过程 来提高事件处理函数运行性能的手段 
         // 并没有实质上减少事件的触发次数。
     </script>
 </body>
