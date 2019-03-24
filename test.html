@@ -10,46 +10,32 @@
 </head>
 <body>
     <script>
-        
-        var obj = {
-            f:1,
-            g:true,
-            // h:undefined,
-            // i:null,
-            j:'string',
+        console.log('script start');
 
-            a: {
-                aa:1
-            },
-            b: {
-                bb:1
-            },
-            c: [
-                1
-            ],
-            d: function(){
-                console.log(1)
-            },
-            key:5
-        }
-        
-        for(key in obj){
-            // console.log(key)
-            // console.log(obj[key])
-            // console.log(obj.key)
-            // console.log(typeof(obj[key]))
-            console.log(obj[key].constructor)
-        }
-        var arr = [1];
-        var k = function(){
+setTimeout(function() {
+  console.log('setTimeout');
+}, 0);
 
-        }
-        console.log(arr instanceof(Array))
-        console.log(arr instanceof(Object))
-        console.log(k instanceof(Function))
-        console.log(k instanceof(Object))
-        console.log(obj instanceof(Function))
-        console.log(typeof(obj))
+// process.nextTick(function(){
+//     console.log('nextTick');
+//     setTimeout(function() {
+//         console.log('setTimeout2');
+//     }, 0);
+// })
+
+Promise.resolve().then(function() {
+    
+}).then(function() {
+console.log('promise6');
+});
+
+Promise.resolve().then(function() {
+  console.log('promise1');
+}).then(function() {
+  console.log('promise2');
+});
+
+console.log('script end');
     </script>
 </body>
 </html>
